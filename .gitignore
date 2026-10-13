@@ -1,0 +1,14 @@
+
+node_modules/
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+__pycache__/
+*.pyc
+chroma_db/
+backend/uploads/
+ai-service/sample.pdf
+ai-service/test.pdf.pdf
+backend/data/materials.json
