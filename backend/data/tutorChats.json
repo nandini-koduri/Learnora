@@ -1,0 +1,129 @@
+[
+  {
+    "id": "legacy-1791988448289-cmn7ru",
+    "title": "what is inhearitance in java?",
+    "createdAt": "2026-10-14T14:34:08.289Z",
+    "updatedAt": "2026-10-14T14:34:08.289Z",
+    "sourceName": "All uploaded materials",
+    "messages": [
+      {
+        "id": "1791988717388-5jthely-q",
+        "role": "user",
+        "text": "what is inhearitance in java?",
+        "createdAt": "2026-10-14T14:34:08.289Z"
+      },
+      {
+        "id": "1791988717388-4gb17ql-a",
+        "role": "assistant",
+        "text": "Hello! The provided study material does not contain information about inheritance in Java.\n\nInheritance is an important concept in Object-Oriented Programming (OOP) in Java. It allows one class (called the subclass or child class) to inherit the properties and methods of another class (called the superclass or parent class).\n\nHere is a simple step-by-step breakdown:\n1. **Reusability:** You can write common code once in a parent class and reuse it across multiple child classes.\n2. **The `extends` keyword:** In Java, a class uses the `extends` keyword to inherit from another class.\n\n**Example:**\n```java\n// Parent class\nclass Animal {\n    void eat() {\n        System.out.println(\"This animal eats food.\");\n    }\n}\n\n// Child class inheriting from Animal\nclass Dog extends Animal {\n    void bark() {\n        System.out.println(\"The dog barks.\");\n    }\n}\n\n// Usage\npublic class Main {\n    public static void main(String[] args) {\n        Dog myDog = new Dog();\n        myDog.eat(); // Inherited method from Animal\n        myDog.bark(); // Dog's own method\n    }\n}\n```\nIn this example, the `Dog` class inherits the `eat()` method from the `Animal` class, so we don't have to rewrite that code for the dog!",
+        "sources": [],
+        "createdAt": "2026-10-14T14:34:08.289Z"
+      }
+    ]
+  },
+  {
+    "id": "legacy-1791988461233-2y61jz",
+    "title": "what is polymorphism?",
+    "createdAt": "2026-10-14T14:34:21.233Z",
+    "updatedAt": "2026-10-14T14:34:21.233Z",
+    "sourceName": "All uploaded materials",
+    "messages": [
+      {
+        "id": "1791988717388-lc34vds-q",
+        "role": "user",
+        "text": "what is polymorphism?",
+        "createdAt": "2026-10-14T14:34:21.233Z"
+      },
+      {
+        "id": "1791988717388-nedlkan-a",
+        "role": "assistant",
+        "text": "Hello! The study material provided does not contain information about polymorphism, as it focuses on machine learning.\n\nPolymorphism is a core concept in object-oriented programming (OOP). The word comes from Greek, meaning \"many forms.\" In programming, it refers to the ability of different classes to respond to the same method call in their own unique ways.\n\nFor example, imagine you have a general command called \"speak()\". If you apply it to a Dog object, it might output \"Woof!\". If you apply it to a Cat object, it might output \"Meow!\". Even though the command is the same, the behavior changes depending on the object receiving it.",
+        "sources": [],
+        "createdAt": "2026-10-14T14:34:21.233Z"
+      }
+    ]
+  },
+  {
+    "id": "1791988760182-g330bk2",
+    "title": "what is sql?",
+    "createdAt": "2026-10-14T14:39:20.181Z",
+    "updatedAt": "2026-10-14T15:03:06.926Z",
+    "sourceName": "experiment-2_Relational_model_fixed.pdf",
+    "messages": [
+      {
+        "id": "1791988826285-ytqd47d",
+        "role": "user",
+        "text": "what is sql?",
+        "createdAt": "2026-10-14T14:40:26.285Z"
+      },
+      {
+        "id": "1791988826285-uazg6r4",
+        "role": "assistant",
+        "text": "Hello! The study material provided does not contain information about SQL. SQL stands for Structured Query Language. It is a special programming language used to communicate with and manage databases. For example, you use SQL to add, update, search for, or delete information stored in a database table.",
+        "sources": [],
+        "createdAt": "2026-10-14T14:40:26.285Z"
+      },
+      {
+        "id": "1791990186926-r0gofyl",
+        "role": "user",
+        "text": "what are key integrity constraints?",
+        "createdAt": "2026-10-14T15:03:06.926Z"
+      },
+      {
+        "id": "1791990186926-6plnsgy",
+        "role": "assistant",
+        "text": "Hello! I'm Learnora, your AI tutor. Key integrity constraints are rules applied to a database table to ensure the accuracy and reliability of the data. Specifically, a primary key constraint must satisfy two main conditions:\n1. It must be unique (no duplicate values allowed).\n2. It cannot be null (it must always have a value).\n\nFor example, in a student table, the Roll Number (Rno) column can be set as the primary key to uniquely identify each student row without leaving any blank values.",
+        "sources": [
+          "experiment-2_Relational_model_fixed.pdf"
+        ],
+        "createdAt": "2026-10-14T15:03:06.926Z"
+      }
+    ]
+  },
+  {
+    "id": "1791994976767-ktq1gxh",
+    "title": "what are key integrity constraints?",
+    "createdAt": "2026-10-14T16:22:56.767Z",
+    "updatedAt": "2026-10-14T16:23:17.451Z",
+    "sourceName": "experiment-2_Relational_model_fixed.pdf",
+    "messages": [
+      {
+        "id": "1791994997451-d830rjb",
+        "role": "user",
+        "text": "what are key integrity constraints?",
+        "createdAt": "2026-10-14T16:23:17.451Z"
+      },
+      {
+        "id": "1791994997451-chh38lh",
+        "role": "assistant",
+        "text": "Hello! I'm Learnora, your AI tutor. Key integrity constraints are a set of rules or conditions applied to a database table to ensure data accuracy and reliability. When dealing with key constraints, we need to select one field (or column) to act as the primary key. A primary key must satisfy two main conditions:\n\n1. It must be unique (no two rows can have the same value in that column).\n2. It cannot be null (every row must have a value in that column).\n\nFor example, in a student table, the Roll Number (Rno) is often chosen as the primary key because every student has a unique roll number and it cannot be left blank.",
+        "sources": [
+          "experiment-2_Relational_model_fixed.pdf"
+        ],
+        "createdAt": "2026-10-14T16:23:17.451Z"
+      }
+    ]
+  },
+  {
+    "id": "1791995009038-g927n8j",
+    "title": "what are E-R models?",
+    "createdAt": "2026-10-14T16:23:29.038Z",
+    "updatedAt": "2026-10-14T16:23:42.695Z",
+    "sourceName": "All uploaded materials",
+    "messages": [
+      {
+        "id": "1791995022695-qhclds3",
+        "role": "user",
+        "text": "what are E-R models?",
+        "createdAt": "2026-10-14T16:23:42.695Z"
+      },
+      {
+        "id": "1791995022695-12xmvmz",
+        "role": "assistant",
+        "text": "Hello! An Entity-Relationship (E-R) model is a way to visually represent data and how different pieces of information relate to each other in a database. It uses three main concepts:\n\n1. **Entities:** Objects or things we want to store information about, such as a \"Student\", \"Customer\", or \"Product\".\n2. **Attributes:** The properties or characteristics of those entities, like a student's \"Name\", \"Roll Number\", or \"Marks\".\n3. **Relationships:** How the entities interact or connect with each other, such as a \"Customer\" placing an \"Order\".\n\nFor example, imagine a school database. The \"Student\" is an entity, their ID and name are attributes, and the link showing which student is enrolled in which \"Course\" is the relationship. E-R models help us design databases clearly before building them!",
+        "sources": [],
+        "createdAt": "2026-10-14T16:23:42.695Z"
+      }
+    ]
+  }
+]

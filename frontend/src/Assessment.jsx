@@ -27,7 +27,9 @@ function Assessment() {
           throw new Error(data.message || "Could not load PDFs.");
         }
 
-        setMaterials(data.materials || []);
+        setMaterials(
+          Array.isArray(data.materials) ? data.materials : []
+        );
       } catch (err) {
         console.error("PDF history error:", err);
         setError("Could not load PDF history. Check the backend.");
@@ -84,6 +86,16 @@ function Assessment() {
   }
 
   function submitQuiz() {
+    if (questions.length === 0) {
+      setError("Generate a quiz before submitting.");
+      return;
+    }
+
+    if (Object.keys(answers).length !== questions.length) {
+      setError("Please answer all questions before submitting.");
+      return;
+    }
+
     let correct = 0;
 
     questions.forEach((question, index) => {
@@ -93,40 +105,61 @@ function Assessment() {
     });
 
     const total = questions.length;
-    const percentage = (correct / total) * 100;
+    const percentage = Math.round((correct / total) * 100);
 
     const attempt = {
       id: Date.now(),
       score: correct,
       total,
-      percentage: Math.round(percentage),
+      percentage,
       difficulty,
       source: selectedSource || "All uploaded materials",
       date: new Date().toISOString()
     };
 
+    // Save quiz history in this browser.
+    let updatedAttempts = [];
+
     try {
-      const previousAttempts = JSON.parse(
+      const savedAttempts = JSON.parse(
         localStorage.getItem("learnoraQuizAttempts") || "[]"
       );
 
+      const previousAttempts = Array.isArray(savedAttempts)
+        ? savedAttempts
+        : [];
+
+      updatedAttempts = [attempt, ...previousAttempts];
+
       localStorage.setItem(
         "learnoraQuizAttempts",
-        JSON.stringify([attempt, ...previousAttempts])
+        JSON.stringify(updatedAttempts)
       );
     } catch (err) {
       console.error("Could not save quiz history:", err);
+      setError(
+        "Quiz completed, but its history could not be saved in this browser."
+      );
     }
 
-    // Adjust the difficulty for the next quiz.
+    // Tell the Dashboard to refresh its quiz statistics.
+    window.dispatchEvent(new Event("learnoraQuizUpdated"));
+
+    // Adjust difficulty for the next quiz.
     let nextDifficulty = difficulty;
 
     if (percentage >= 80) {
-      if (difficulty === "easy") nextDifficulty = "medium";
-      else if (difficulty === "medium") nextDifficulty = "hard";
+      if (difficulty === "easy") {
+        nextDifficulty = "medium";
+      } else if (difficulty === "medium") {
+        nextDifficulty = "hard";
+      }
     } else if (percentage < 50) {
-      if (difficulty === "hard") nextDifficulty = "medium";
-      else if (difficulty === "medium") nextDifficulty = "easy";
+      if (difficulty === "hard") {
+        nextDifficulty = "medium";
+      } else if (difficulty === "medium") {
+        nextDifficulty = "easy";
+      }
     }
 
     setScore(correct);
@@ -164,7 +197,7 @@ function Assessment() {
               key={material.id || material.filename}
               value={material.originalName}
             >
-              {material.originalName}
+              {material.originalName || material.filename}
             </option>
           ))}
         </select>
@@ -200,12 +233,10 @@ function Assessment() {
 
       {error && <p role="alert">{error}</p>}
 
-      {questions.length > 0 && (
+      {questions.length > 0 && score === null && (
         <p>
           <strong>Current quiz difficulty:</strong>{" "}
-          {questions.length > 0 && score === null
-            ? difficulty.charAt(0).toUpperCase() + difficulty.slice(1)
-            : ""}
+          {difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}
         </p>
       )}
 
@@ -215,33 +246,37 @@ function Assessment() {
             {index + 1}. {question.question}
           </h3>
 
-          {question.options.map((option, optionIndex) => (
-            <label
-              key={optionIndex}
-              style={{ display: "block", margin: "10px 0" }}
-            >
-              <input
-                type="radio"
-                name={`question-${index}`}
-                checked={Number(answers[index]) === optionIndex}
-                onChange={() =>
-                  setAnswers((previous) => ({
-                    ...previous,
-                    [index]: optionIndex
-                  }))
-                }
-                disabled={score !== null}
-              />
-              {" "}{option}
-            </label>
-          ))}
+          {Array.isArray(question.options) &&
+            question.options.map((option, optionIndex) => (
+              <label
+                key={optionIndex}
+                style={{ display: "block", margin: "10px 0" }}
+              >
+                <input
+                  type="radio"
+                  name={`question-${index}`}
+                  checked={Number(answers[index]) === optionIndex}
+                  onChange={() => {
+                    setAnswers((previous) => ({
+                      ...previous,
+                      [index]: optionIndex
+                    }));
+                  }}
+                  disabled={score !== null}
+                />
+                {" "}{option}
+              </label>
+            ))}
 
           {score !== null && (
             <div>
               <p>
                 {Number(answers[index]) === Number(question.answer)
                   ? "Correct!"
-                  : `Correct answer: ${question.options[question.answer]}`}
+                  : `Correct answer: ${
+                      question.options?.[Number(question.answer)] ??
+                      "Unavailable"
+                    }`}
               </p>
 
               <ReactMarkdown>
@@ -263,7 +298,9 @@ function Assessment() {
 
       {score !== null && (
         <div className="assessment-result">
-          <h2>Your Score: {score}/{questions.length}</h2>
+          <h2>
+            Your Score: {score}/{questions.length}
+          </h2>
 
           <p>
             {score / questions.length >= 0.8

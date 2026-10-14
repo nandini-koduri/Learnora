@@ -1,6 +1,7 @@
 
 import { useState } from "react";
 import "./index.css";
+import "./polish.css";
 
 import Sidebar from "./Sidebar";
 import Dashboard from "./Dashboard";
