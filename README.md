@@ -1,103 +1,93 @@
-# Learnora — AI-Powered Personalized Learning
+# Learnora – AI-Powered Personalized Learning Platform
 
-Learnora is an AI-powered study companion designed to help students learn more effectively from their own study materials. It allows students to upload PDFs, ask questions based on their selected material, practice AI-generated assessments, and track their learning progress.
+Learnora is an AI-powered personalized learning companion designed to make studying more interactive, accessible, and efficient. It brings study material management, AI-assisted tutoring, adaptive assessments, and learning progress tracking together in one platform.
 
-## Problem Statement
+## Demo Video
 
-Students often spend a lot of time searching through textbooks and notes to understand concepts and prepare for exams. Generic AI tools may provide answers that are not directly connected to a student's own study material.
-
-## Our Solution
-
-Learnora connects AI assistance with uploaded study materials to provide a more focused learning experience. Students can study from their PDFs, interact with an AI tutor, test their understanding, and review their assessment performance.
+▶️ **Watch the Learnora Demo:** [YouTube Project Demo](https://youtu.be/9Ujg8YsVvxs)
 
 ## Features
 
-- **Study Material Upload:** Upload PDF documents and extract text for learning.
-- **AI Tutor:** Ask questions with context from the selected study material.
-- **Context-Aware Learning:** Retrieve relevant information from stored document chunks.
-- **AI-Generated Assessments:** Generate practice questions to test understanding.
-- **Progress Tracking:** Review quiz scores and assessment history.
-- **Organized Learning Experience:** Access study materials, tutoring, assessments, and progress through a web interface.
+- **Study Materials:** Upload and manage PDF study materials.
+- **AI Tutor:** Ask questions and get learning assistance based on study materials.
+- **Adaptive Assessments:** Practice questions to test your understanding.
+- **Learning Progress:** Review learning activities and quiz history.
+- **Document Processing:** Extract text from PDFs and prepare content for AI-powered retrieval.
 
 ## Technology Stack
 
-- **Frontend:** React, Vite, JavaScript, CSS
+- **Frontend:** React, JavaScript, CSS
 - **Backend:** Node.js, Express.js
 - **AI Service:** Python, Flask
-- **AI Model:** Google Gemini API
-- **Vector Database:** ChromaDB
-- **Document Processing:** PDF text extraction and chunking
-
-## Project Architecture
-
-1. The React frontend allows students to upload PDFs and interact with the application.
-2. The Express backend handles material-related API requests and file uploads.
-3. The Python AI service processes learning content and supports AI-related operations.
-4. ChromaDB stores document chunks for relevant-content retrieval.
-5. Gemini supports AI-powered tutoring and assessment generation.
+- **Document Processing:** PDF text extraction and text chunking
+- **Knowledge Retrieval:** ChromaDB
 
 ## Project Structure
 
 ```text
 Learnora/
-├── frontend/
-├── backend/
-│   ├── routes/
-│   └── server.js
-├── ai-service/
-│   ├── app.py
-│   └── vector_store.py
-└── .gitignore
+├── frontend/       # React user interface
+├── backend/        # Express API and application logic
+└── ai-service/     # Python AI and document processing
 ```
 
-## Running the Project Locally
+## Getting Started
 
 ### Prerequisites
 
-Install the following before starting:
-
 - Node.js and npm
-- Python 3
-- A Google Gemini API key
+- Python
+- Git
 
-### 1. Configure the AI Service
+### Installation
 
-Create a `.env` file inside `ai-service/` and add your own API key using the environment variable name expected by your application.
+1. Clone the repository:
 
-Do not upload this file or expose your API key publicly.
+   ```bash
+   git clone https://github.com/nandini-koduri/Learnora.git
+   ```
 
-Install the Python dependencies listed in your project's dependency file, then start the Flask service using the appropriate Python environment.
+2. Navigate to the project directory:
 
-### 2. Start the Backend
+   ```bash
+   cd Learnora
+   ```
 
-Open a terminal in the `backend/` folder, install dependencies, and start the server using the script configured in `backend/package.json`.
+3. Install frontend and backend dependencies in their respective directories:
 
-The backend is configured to run at `http://localhost:5000` in the development setup.
+   ```bash
+   cd frontend
+   npm install
+   ```
 
-### 3. Start the Frontend
+   ```bash
+   cd ../backend
+   npm install
+   ```
 
-Open another terminal in the `frontend/` folder, install dependencies, and start the Vite development server.
+4. Set up the Python environment and install the AI service dependencies according to the configuration in `ai-service/`.
 
-The frontend is configured to run at `http://localhost:5173` in the development setup.
+5. Configure the required environment variables and API credentials locally. Never commit secrets or `.env` files.
 
-Keep the backend and AI service running while using the application.
+6. Start the frontend, backend, and AI service using their respective project configurations.
 
-> Note: Exact dependency installation commands and environment variable names depend on the configuration files included in the project.
+## Project Goal
 
-## Security
-
-- Keep API keys and `.env` files private.
-- Do not commit virtual environments, `node_modules`, generated vector database files, or private uploaded documents.
-- Use your own API key and review the applicable API usage limits.
+Learnora aims to support personalized learning by combining study resources, AI-assisted explanations, assessments, and progress tracking in a single application.
 
 ## Future Improvements
 
-- Adaptive learning paths based on student performance.
-- More detailed concept and prerequisite mapping.
-- Improved source citations with page-level references.
-- Support for additional study-material formats.
-- Personalized revision recommendations.
+- More personalized learning recommendations
+- Improved assessment difficulty adaptation
+- Expanded document and learning resource support
+- More detailed learning analytics
 
-## Project
+## Author
 
-**Learnora** — making study sessions more focused, interactive, and personalized.
+**Nandini Koduri**
+
+GitHub: [nandini-koduri](https://github.com/nandini-koduri)
+
+---
+
+*Developed as an AI-powered personalized learning project.*
